@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+       <ui:composition template="index.xhtml" >
+              <ui:define name="conteudo" >
+                     <h3>Cadastro de Clientes</h3>
+                     <h:form>
+
+                            <p:panelGrid columns="3" style="font-size: 12px;">
+                                   <p:outputLabel value="Nome"/>
+                                   <p:inputText value="#{clienteMB.cliente.nome}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Numero"/>
+                                   <p:inputText value="#{clienteMB.cliente.endereco.numero}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Rua"/>
+                                   <p:inputText value="#{clienteMB.cliente.endereco.rua}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Bairro"/>
+                                   <p:inputText value="#{clienteMB.cliente.endereco.bairro.descricao}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Cidade"/>
+                                   <p:inputText value="#{clienteMB.cliente.endereco.bairro.cidade.descricao}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Estado"/>
+                                   <p:inputText value="#{clienteMB.cliente.endereco.bairro.cidade.estado.descricao}"/>
+
+
+                                   <p:commandButton value="Salvar" action="#{clienteMB.salvar()}" ajax="false"/>
+                                   
+                            </p:panelGrid>
+
+
+
+                            <p:dataTable value = "#{ clienteMB.findAll () }" var = "cliente" id = "dataTable" paginator="true" rows="10" 
+                                         rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nao há dados cadastrados" style="font-size: 12px;">
+                                   
+                                   <p:column headerText = "Nome" > #{ cliente.nome } </p:column>   
+                                   
+                                   <p:column headerText = "Endereço" > Rua #{cliente.endereco.rua}, 
+                                                                           #{cliente.endereco.numero}, 
+                                                                    Bairro #{cliente.endereco.bairro.descricao},
+                                                                           #{cliente.endereco.bairro.cidade.descricao},
+                                                                           #{cliente.endereco.bairro.cidade.estado.descricao}   </p:column>
+                                  
+                                   <p:column headerText="..." style="width: 10%"> 
+                                          <p:commandButton icon="ui-icon-pencil" action="#{clienteMB.editar(cliente)}" ajax="false"/>
+                                          <p:commandButton icon="ui-icon-close" action="#{clienteMB.remove(cliente.id)}" ajax="false"/>
+                                   </p:column>
+                            </p:dataTable>
+
+                     </h:form>
+              </ui:define>
+       </ui:composition>
+</html>

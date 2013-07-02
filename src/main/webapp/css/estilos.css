@@ -1,0 +1,18 @@
+/* 
+    Document   : css
+    Created on : 28/06/2013, 15:14:29
+    Author     : jeff
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+       display: block;
+}
+
+body{
+       background-color: appworkspace;
+}
+#templateCliente{
+       font-size: 10px;
+}

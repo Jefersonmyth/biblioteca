@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+       <h:head>
+              <title>Biblioteca</title>
+              <link href="#{request.contextPath}/css/estilos.css" rel="stylesheet" type="text/css" />
+       </h:head>
+       <h:body>
+              <h:form>
+                     <p:layout fullPage="true">
+                            <p:layoutUnit position="north" header="Biblioteca" style="text-align: center"/>
+                            <p:layoutUnit position="west" style="width: 220px;">
+                                   <p:panelMenu style="font-size: 10px; width: 215px;">
+                                          <p:submenu label="Inicio" style="width: 210px;">
+                                                 <p:menuitem value="Pagina Inicial" icon="ui-icon-note"/>
+                                          </p:submenu>
+                                                 
+                                          <p:submenu label="Gerenciar" style="width: 210px;" >
+                                                 <p:submenu label="Cliente">
+                                                        <p:menuitem value=" Cadastro" icon="ui-icon-document" url="cadastrarCliente.xhtml"/>
+                                                        <p:menuitem value=" Consulta" icon="ui-icon-search" url="consultarCliente.xhtml"/>
+                                                 </p:submenu>
+
+                                                 <p:submenu label="Livros">
+                                                        <p:menuitem value=" Cadastro" icon="ui-icon-document" url="livro.xhtml"></p:menuitem>
+                                                        <p:menuitem value=" Consulta" icon="ui-icon-search"/>
+
+                                                 </p:submenu>
+                                          </p:submenu>
+                                          <p:submenu label="Controle" style="width: 210px; ">
+                                                 <p:menuitem value="Emprestimos"/>
+                                          </p:submenu>
+                                   </p:panelMenu>
+                            </p:layoutUnit>
+                            <p:layoutUnit position="center" >
+                                   <p:growl autoUpdate="true" showDetail="true"/>
+                                   <ui:insert name="conteudo">
+                                          <h3>teste</h3>
+                                   </ui:insert>
+                            </p:layoutUnit>
+                     </p:layout>
+              </h:form>
+       </h:body>
+</html>
