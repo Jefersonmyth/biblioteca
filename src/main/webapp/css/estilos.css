@@ -25,3 +25,22 @@ h3{
         border: none;
         
 }
+
+.semBorda tr, .semBorda td {  
+     border: none !important;  
+}  
+
+.container{
+    margin-top: 10px;
+    border: none !important;
+    padding: 0px;
+}
+
+#titutoInicial{
+    text-align: center;
+    margin-top: 22%;
+    font-family: "Monotype Corsiva";
+    font-size: 35px;
+    text-shadow:  1px 1px 1px #999999;
+    font-style: italic;
+}

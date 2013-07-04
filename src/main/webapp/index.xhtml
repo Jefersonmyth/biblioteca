@@ -11,11 +11,11 @@
        <h:body>
               <h:form>
                      <p:layout fullPage="true">
-                            <p:layoutUnit position="north" header="Biblioteca" style="text-align: center"/>
+                            <p:layoutUnit position="north" header="Biblioteca Central - Gerenciamento" style="text-align: center"/>
                             <p:layoutUnit position="west" style="width: 220px;">
                                    <p:panelMenu style="font-size: 10px; width: 215px;">
                                           <p:submenu label="Inicio" style="width: 210px;">
-                                                 <p:menuitem value="Pagina Inicial" icon="ui-icon-note"/>
+                                              <p:menuitem value="Pagina Inicial" icon="ui-icon-note" url="index.xhtml"/>
                                           </p:submenu>
                                                  
                                           <p:submenu label="Gerenciar" style="width: 210px;" >
@@ -38,7 +38,7 @@
                             <p:layoutUnit position="center" >
                                    <p:growl autoUpdate="true" showDetail="true"/>
                                    <ui:insert name="conteudo">
-                                          <h3>teste</h3>
+                                       <h3 id="titutoInicial">Biblioteca Central - UNIPAM</h3>
                                    </ui:insert>
                             </p:layoutUnit>
                      </p:layout>

@@ -7,34 +7,35 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
        <ui:composition template="index.xhtml" >
               <ui:define name="conteudo" >
                      <h3>Cadastro de Clientes</h3>
                      <h:form>
 
-                         <p:panelGrid columns="3" style="font-size: 12px;" id="panelCliente">
-                                   <p:outputLabel value="Nome"/>
+                         <p:panelGrid columns="3" style="font-size: 12px;" id="panelCliente" styleClass="semBorda">
+                                   <p:outputLabel value="Nome:"/>
                                    <p:inputText value="#{clienteMB.cliente.nome}"/>
                                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Numero"/>
+                                   <p:outputLabel value="Numero:"/>
                                    <p:inputText value="#{clienteMB.cliente.endereco.numero}"/>
                                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Rua"/>
+                                   <p:outputLabel value="Rua:"/>
                                    <p:inputText value="#{clienteMB.cliente.endereco.rua}"/>
                                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Bairro"/>
+                                   <p:outputLabel value="Bairro:"/>
                                    <p:inputText value="#{clienteMB.cliente.endereco.bairro.descricao}"/>
                                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Cidade"/>
+                                   <p:outputLabel value="Cidade:"/>
                                    <p:inputText value="#{clienteMB.cliente.endereco.bairro.cidade.descricao}"/>
                                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Estado"/>
+                                   <p:outputLabel value="Estado:"/>
                                    <p:inputText value="#{clienteMB.cliente.endereco.bairro.cidade.estado.descricao}"/>
 
 
@@ -43,10 +44,12 @@ and open the template in the editor.
                             </p:panelGrid>
 
 
-
+                         <p:panel styleClass="container">
                             <p:dataTable value = "#{ clienteMB.findAll () }" var = "cliente" id = "dataTable" paginator="true" rows="10" 
                                          rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nao há dados cadastrados" style="font-size: 12px;">
-                                   
+                                   <f:facet name="header">
+                                       <h:outputText value="Usuários Cadastrados"/>
+                                   </f:facet>
                                    <p:column headerText = "Nome" > #{ cliente.nome } </p:column>   
                                    
                                    <p:column headerText = "Endereço" > Rua #{cliente.endereco.rua}, 
@@ -60,7 +63,7 @@ and open the template in the editor.
                                           <p:commandButton icon="ui-icon-close" action="#{clienteMB.remove(cliente.id)}" ajax="false"/>
                                    </p:column>
                             </p:dataTable>
-
+                         </p:panel>
                      </h:form>
               </ui:define>
        </ui:composition>
