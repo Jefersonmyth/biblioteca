@@ -5,16 +5,12 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,16 +18,35 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-       @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+       @NamedQuery(name = "livros.findAll", query = "SELECT l  FROM Livro l")
 })
-public class Cliente extends Pessoa implements Serializable {
+public class Livro implements Serializable {
 
        private static final long serialVersionUID = 1L;
        @Id
-       @GeneratedValue(strategy = GenerationType.IDENTITY)
+       @GeneratedValue(strategy = GenerationType.AUTO)
        private Long id;
+       private String nome;
+       private String Assunto;
+       
+       public Livro(){
+           
+       }
 
-       public Cliente() {
+       public String getNome() {
+              return nome;
+       }
+
+       public void setNome(String nome) {
+              this.nome = nome;
+       }
+
+       public String getAssunto() {
+              return Assunto;
+       }
+
+       public void setAssunto(String Assunto) {
+              this.Assunto = Assunto;
        }
 
        public Long getId() {
@@ -52,10 +67,10 @@ public class Cliente extends Pessoa implements Serializable {
        @Override
        public boolean equals(Object object) {
               // TODO: Warning - this method won't work in the case the id fields are not set
-              if (!(object instanceof Cliente)) {
+              if (!(object instanceof Livro)) {
                      return false;
               }
-              Cliente other = (Cliente) object;
+              Livro other = (Livro) object;
               if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
                      return false;
               }
@@ -64,6 +79,6 @@ public class Cliente extends Pessoa implements Serializable {
 
        @Override
        public String toString() {
-              return "model.Cliente[ id=" + id + " ]";
+              return "model.Livro[ id=" + id + " ]";
        }
 }
