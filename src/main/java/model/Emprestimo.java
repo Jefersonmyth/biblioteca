@@ -60,7 +60,7 @@ public class Emprestimo implements Serializable {
        }
 
        public void setCliente(Cliente cliente) {
-              this.cliente = cliente;
+              this.cliente = cliente; 
        }
 
        public ModelLivro getLivro() {
