@@ -5,12 +5,13 @@
 package view;
 
 import controller.LivroEJB;
+import helper.Mensagem;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import model.Livro;
+import model.ModelLivro;
 
 /**
  *
@@ -20,7 +21,7 @@ import model.Livro;
 @ViewScoped
 public class livroMB {
 
-       private Livro livro = new Livro();
+       private ModelLivro livro = new ModelLivro();
        @EJB
        LivroEJB livroEJB;
 
@@ -28,11 +29,11 @@ public class livroMB {
        
    
 
-       public Livro getLivro() {
+       public ModelLivro getLivro() {
               return livro;
        }
 
-       public void setLivro(Livro livro) {
+       public void setLivro(ModelLivro livro) {
               this.livro = livro;
        }
 
@@ -42,10 +43,23 @@ public class livroMB {
        public void salvar() 
        {
               livroEJB.salvar(livro);
-              setLivro(new Livro());
+              setLivro(new ModelLivro());
        }
 
-       public List< Livro> findAll() {
+       public List< ModelLivro > findAll() {
               return livroEJB.findAll();
        }
+       
+       public void editar ( ModelLivro modelLivro )
+       {
+           setLivro(modelLivro);
+       }
+       
+       
+       public void remove ( Long id )
+       {
+           livroEJB.remove(id);
+           Mensagem.sucesso();
+       }
+       
 }

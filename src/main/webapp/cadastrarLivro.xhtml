@@ -5,36 +5,46 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html">
 
-       <ui:composition template="index.xhtml">
-              <ui:define name="conteudo">
-                     <h3>Cadastro de livros</h3>
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h3>Cadastro de livros</h3>
 
-                     <h:form>
-                            <p:panelGrid columns="3">
-                                   <p:outputLabel value="Nome do livro :"/>
-                                   <p:inputText value="#{livroMB.livro.nome}"/>
-                                   <p:outputLabel value=""/>
+            <h:form>
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="Nome do livro :"/>
+                    <p:inputText value="#{livroMB.livro.nome}"/>
+                    <p:outputLabel value=""/>
 
-                                   <p:outputLabel value="Assunto :"/>
-                                   <p:inputText value="#{livroMB.livro.assunto}"/>
-                                   <p:outputLabel value=""/>
-                            </p:panelGrid>
+                    <p:outputLabel value="Assunto :"/>
+                    <p:inputText value="#{livroMB.livro.assunto}"/>
+                    <p:outputLabel value=""/>
 
-                            <p:commandButton value="Salvar" action="#{livroMB.salvar()}" ajax="false"/>
+                    <p:outputLabel value="Autor :"/>
+                    <p:inputText value="#{livroMB.livro.autor}"/>
+                    <p:outputLabel value=""/>
+                </p:panelGrid>
+
+                <p:commandButton value="Salvar" action="#{livroMB.salvar()}" ajax="false"/>
 
 
-                            <p:dataTable value = "#{livroMB.findAll()}" var = "livros" id = "dataTable" paginator="true" rows="10" 
-                                         rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nao há dados cadastrados" style="font-size: 12px;">
+                <p:dataTable value = "#{livroMB.findAll()}" var = "livros" id = "dataTable" paginator="true" rows="10" 
+                             rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nao há dados cadastrados" style="font-size: 12px;">
 
 
-                                   <p:column headerText = "Nome" > #{livros.nome} </p:column>   
-                                   <p:column headerText = "Assunto" > #{livros.assunto} </p:column>   
+                    <p:column headerText = "Nome" > #{livros.nome} </p:column>   
+                    <p:column headerText = "Assunto" > #{livros.assunto} </p:column>   
+                    <p:column headerText = "Autor" > #{livros.autor} </p:column> 
 
-                            </p:dataTable>
-                     </h:form>
+                    <p:column headerText="..." style="width: 10%"> 
+                        <p:commandButton icon="ui-icon-pencil" action="#{livroMB.editar(livros)}" ajax="false"/>
+                        <p:commandButton icon="ui-icon-close" action="#{livroMB.remove(livros.id)}" ajax="false"/>
+                    </p:column>
 
-              </ui:define>
-       </ui:composition>
+                </p:dataTable>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
 
 </html>
 

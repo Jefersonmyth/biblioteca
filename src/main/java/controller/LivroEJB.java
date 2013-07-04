@@ -8,7 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.Livro;
+import model.ModelLivro;
 
 /**
  *
@@ -20,17 +20,25 @@ public class LivroEJB {
        @PersistenceContext
        EntityManager em;
        
-       public void salvar( Livro livro )
+       public void salvar( ModelLivro livro )
        {
               em.merge( livro );
        }
 
        
        
-       public List < Livro > findAll()
+       public List < ModelLivro > findAll()
        {
-              return em.createNamedQuery("livros.findAll").getResultList();
+              return em.createNamedQuery("ModelLivro.findAll").getResultList();
               
+       }
+       
+       
+       
+       public void remove ( Long id )
+       {
+           ModelLivro modelLivro = em.find(ModelLivro.class, id);
+           em.remove ( modelLivro ) ;
        }
        
 }

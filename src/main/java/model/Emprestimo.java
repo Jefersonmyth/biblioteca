@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,7 +37,7 @@ public class Emprestimo implements Serializable {
        @ManyToOne
        private Cliente cliente;
        @ManyToOne
-       private Livro livro;
+       private ModelLivro livro;
 
        public Date getDataLocacao() {
               return dataLocacao;
@@ -64,11 +63,11 @@ public class Emprestimo implements Serializable {
               this.cliente = cliente;
        }
 
-       public Livro getLivro() {
+       public ModelLivro getLivro() {
               return livro;
        }
 
-       public void setLivro(Livro livro) {
+       public void setLivro(ModelLivro livro) {
               this.livro = livro;
        }
 
