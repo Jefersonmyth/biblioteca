@@ -10,43 +10,47 @@
               <ui:define name="conteudo">
                      <h3>Emprestimos</h3>
                      <h:form>
-                            <p:outputLabel value="cliente"/>
+                         
+                         <p:panelGrid columns="3" style="font-size: 12px;" styleClass="semBorda">
+                            <p:outputLabel value="Cliente:"/>
                             <p:selectOneMenu value="#{emprestimoMB.cliente.id}">
                                    <f:selectItems value="#{clienteMB.findAll()}" 
                                                   var="clientes" 
                                                   itemLabel="#{clientes.nome}" 
                                                   itemValue="#{clientes.id}" />
                             </p:selectOneMenu>
-
-                            <br/>
-
-                            <p:outputLabel value="livro"/>
+                            <p:outputLabel value=""/>
+                            
+                            <p:outputLabel value="Livro:"/>
                             <p:selectOneMenu value="#{emprestimoMB.modelLivro.id}">
                                    <f:selectItems value="#{livroMB.findAll()}" 
                                                   var="livros" 
                                                   itemLabel="#{livros.nome}" 
                                                   itemValue="#{livros.id}" />
                             </p:selectOneMenu>
-
-                            <p:outputLabel value="Data Emprestimo"/>
+                            <p:outputLabel value=""/>
+                            
+                            <p:outputLabel value="Data Emprestimo:"/>
                             <p:calendar value="#{emprestimoMB.emprestimo.dataLocacao}" pattern="dd/MM/yyyy" id="calendarioEmprestimo"/>
+                            <p:outputLabel value=""/>
 
-
-                            <p:outputLabel value="Data Devolução"/>
+                            <p:outputLabel value="Data Devolução:"/>
                             <p:calendar value="#{emprestimoMB.emprestimo.dataDevolucao}" pattern="dd/MM/yyyy" id="calendarioDevolucao"/>
-
+                            <p:outputLabel value=""/>
 
                             <p:commandButton value="Salvar" action="#{emprestimoMB.salvar()}" ajax="false"/>
-
-                            <p:dataTable value="#{emprestimoMB.findAll()}" var="emprestimos" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum dado.">
-                                   <p:column headerText="nome">#{emprestimos.cliente.nome}</p:column>
-                                   <p:column headerText="livro">#{emprestimos.livro.nome}</p:column>
-                                   <p:column headerText="data entrega">
+                            
+                        </p:panelGrid>
+                        <p:panel styleClass="container">    
+                              <p:dataTable value="#{emprestimoMB.findAll()}" var="emprestimos" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum dado.">
+                                   <p:column headerText="Nome">#{emprestimos.cliente.nome}</p:column>
+                                   <p:column headerText="Livro">#{emprestimos.livro.nome}</p:column>
+                                   <p:column headerText="Data empréstimo">
                                           <h:outputText value="#{emprestimos.dataLocacao}">
                                                  <f:convertDateTime dateStyle="medium"/>
                                           </h:outputText>
                                    </p:column>
-                                   <p:column headerText="data devolver">
+                                   <p:column headerText="Data Devolução">
                                           <h:outputText value="#{emprestimos.dataDevolucao}">
                                                  <f:convertDateTime dateStyle="medium"/>
                                           </h:outputText>
@@ -58,13 +62,13 @@
                                    </p:column>
                                    
                                    <p:column headerText="..." style="width: 7.5%">
-                                          <p:commandButton icon="ui-icon-pencil" update="@form" action="#{emprestimoMB.devolver()}" ajax="false">
+                                       <p:commandButton icon="ui-icon-pencil" update="@form" action="#{emprestimoMB.devolver()}" ajax="false" value="Devolver">
                                                  <f:setPropertyActionListener target="#{emprestimoMB.emprestimoSelecionado}"
                                                                               value="#{emprestimos}"/>
                                           </p:commandButton>
                                    </p:column>
                             </p:dataTable>
-
+                         </p:panel>
                      </h:form>
               </ui:define>
        </ui:composition>

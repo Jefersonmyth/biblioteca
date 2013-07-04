@@ -5,6 +5,7 @@
 package view;
 
 import controller.EmprestimoEJB;
+import helper.Mensagem;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -49,6 +50,7 @@ public class EmprestimoMB {
 
        public void devolver() {
               emprestimoEJB.devolver(emprestimoSelecionado);
+              Mensagem.sucesso();
        }
 
        public Cliente getCliente() {
