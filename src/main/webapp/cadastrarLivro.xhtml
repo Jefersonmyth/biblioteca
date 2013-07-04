@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+       <ui:composition template="index.xhtml">
+              <ui:define name="conteudo">
+                     <h3>Cadastro de livros</h3>
+
+                     <h:form>
+                            <p:panelGrid columns="3">
+                                   <p:outputLabel value="Nome do livro :"/>
+                                   <p:inputText value="#{livroMB.livro.nome}"/>
+                                   <p:outputLabel value=""/>
+
+                                   <p:outputLabel value="Assunto :"/>
+                                   <p:inputText value="#{livroMB.livro.assunto}"/>
+                                   <p:outputLabel value=""/>
+                            </p:panelGrid>
+
+                            <p:commandButton action="#{livroMB.salvar()}" ajax="false"/>
+
+
+                            <p:dataTable value = "#{livroMB.findAll()}" var = "livros" id = "dataTable" paginator="true" rows="10" 
+                                         rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nao há dados cadastrados" style="font-size: 12px;">
+
+
+                                   <p:column headerText = "Nome" > #{livros.nome} </p:column>   
+                                   <p:column headerText = "Assunto" > #{livros.assunto} </p:column>   
+
+                            </p:dataTable>
+                     </h:form>
+
+              </ui:define>
+       </ui:composition>
+
+</html>
+
+
+
+
