@@ -32,4 +32,10 @@ public class EmprestimoEJB {
        }
 
        
+       public void devolver( Emprestimo emprestimo)
+       {
+              Emprestimo e = em.find(Emprestimo.class, emprestimo.getId());
+              e.setControlaEmprestimo(true);
+              em.merge(e);
+       }
 }

@@ -34,10 +34,19 @@ public class Emprestimo implements Serializable {
        private Date dataLocacao;
        @Temporal(TemporalType.DATE)
        private Date dataDevolucao;
+       private boolean controlaEmprestimo = false;
        @ManyToOne
        private Cliente cliente;
        @ManyToOne
        private ModelLivro livro;
+
+       public boolean isControlaEmprestimo() {
+              return controlaEmprestimo;
+       }
+
+       public void setControlaEmprestimo(boolean controlaEmprestimo) {
+              this.controlaEmprestimo = controlaEmprestimo;
+       }
 
        public Date getDataLocacao() {
               return dataLocacao;
@@ -60,7 +69,7 @@ public class Emprestimo implements Serializable {
        }
 
        public void setCliente(Cliente cliente) {
-              this.cliente = cliente; 
+              this.cliente = cliente;
        }
 
        public ModelLivro getLivro() {

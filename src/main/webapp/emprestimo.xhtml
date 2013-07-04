@@ -3,12 +3,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
        <ui:composition template="index.xhtml">
               <ui:define name="conteudo">
                      <h3>Emprestimos</h3>
-                     
+                     <h:form>
+                            <p:outputLabel value="cliente"/>
+                            <p:selectOneMenu value="#{emprestimoMB.cliente.id}">
+                                   <f:selectItems value="#{clienteMB.findAll()}" 
+                                                  var="clientes" 
+                                                  itemLabel="#{clientes.nome}" 
+                                                  itemValue="#{clientes.id}" />
+                            </p:selectOneMenu>
+
+                            <br/>
+
+                            <p:outputLabel value="livro"/>
+                            <p:selectOneMenu value="#{emprestimoMB.modelLivro.id}">
+                                   <f:selectItems value="#{livroMB.findAll()}" 
+                                                  var="livros" 
+                                                  itemLabel="#{livros.nome}" 
+                                                  itemValue="#{livros.id}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Data Emprestimo"/>
+                            <p:calendar value="#{emprestimoMB.emprestimo.dataLocacao}" pattern="dd/MM/yyyy" id="calendarioEmprestimo"/>
+
+
+                            <p:outputLabel value="Data Devolução"/>
+                            <p:calendar value="#{emprestimoMB.emprestimo.dataDevolucao}" pattern="dd/MM/yyyy" id="calendarioDevolucao"/>
+
+
+                            <p:commandButton value="Salvar" action="#{emprestimoMB.salvar()}" ajax="false"/>
+
+                            <p:dataTable value="#{emprestimoMB.findAll()}" var="emprestimos" id="lista" paginator="true" rows="10" rowsPerPageTemplate="5, 10, 15, 20" emptyMessage="Nenhum dado.">
+                                   <p:column headerText="nome">#{emprestimos.cliente.nome}</p:column>
+                                   <p:column headerText="livro">#{emprestimos.livro.nome}</p:column>
+                                   <p:column headerText="data entrega">
+                                          <h:outputText value="#{emprestimos.dataLocacao}">
+                                                 <f:convertDateTime dateStyle="medium"/>
+                                          </h:outputText>
+                                   </p:column>
+                                   <p:column headerText="data devolver">
+                                          <h:outputText value="#{emprestimos.dataDevolucao}">
+                                                 <f:convertDateTime dateStyle="medium"/>
+                                          </h:outputText>
+
+                                   </p:column>
+                                   
+                                   <p:column headerText="Devolvido">
+                                          #{emprestimos.controlaEmprestimo == false ? 'nao' : 'sim'}
+                                   </p:column>
+                                   
+                                   <p:column headerText="..." style="width: 7.5%">
+                                          <p:commandButton icon="ui-icon-pencil" update="@form" action="#{emprestimoMB.devolver()}" ajax="false">
+                                                 <f:setPropertyActionListener target="#{emprestimoMB.emprestimoSelecionado}"
+                                                                              value="#{emprestimos}"/>
+                                          </p:commandButton>
+                                   </p:column>
+                            </p:dataTable>
+
+                     </h:form>
               </ui:define>
        </ui:composition>
 
