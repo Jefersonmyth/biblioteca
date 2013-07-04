@@ -6,20 +6,40 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import model.Cliente;
 
 /**
  *
- * @author jeff
+ * @author jeff/victor
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class clienteMB {
 
        private Cliente cliente;
        @EJB
        private ClienteEJB clienteEJB;
+       
+       private List<Cliente> listaTemp;
+       
+       private String nomeProcurado;
+
+        public String getNomeProcurado() {
+            return nomeProcurado;
+        }
+
+        public void setNomeProcurado(String nomeProcurado) {
+            this.nomeProcurado = nomeProcurado;
+        }
+
+        public List<Cliente> getListaTemp() {
+            return listaTemp;
+        }
+
+        public void setListaTemp(List<Cliente> listaTemp) {
+            this.listaTemp = listaTemp;
+        }
 
        
        
@@ -88,5 +108,9 @@ public class clienteMB {
        public void editar(Cliente cliente)
        {
               setCliente(cliente);
+       }
+       
+       public void findByNome(){
+           listaTemp = clienteEJB.obterPorNome(getNomeProcurado());
        }
 }//Fim Classe

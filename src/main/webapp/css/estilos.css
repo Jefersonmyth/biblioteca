@@ -12,7 +12,16 @@ root {
 
 body{
        background-color: appworkspace;
+       font-size: 14px;
 }
 #templateCliente{
        font-size: 10px;
+}
+h3{
+    text-align: center;
+}
+
+#panelCliente{
+        border: none;
+        
 }

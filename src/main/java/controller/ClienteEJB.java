@@ -31,4 +31,9 @@ public class ClienteEJB {
               Cliente cliente = em.find( Cliente.class, id );
               em.remove( cliente );
        }
+       
+       public List< Cliente > obterPorNome(String nome){
+           Query query = em.createQuery("SELECT o FROM Pessoa o WHERE o.nome LIKE '%" + nome + "%'");
+           return query.getResultList();
+       }
 }
