@@ -9,55 +9,35 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
+    
        <ui:composition template="index.xhtml">
               <ui:define name="conteudo">
-                     <h3>Consultar Clientes</h3>
+        
+                  <h:form>
+                  <h3>Consultar Usuarios</h3>  
 
+                      
+                      <p:dataTable value="#{clienteMB.findAll()}" var="cliente" id="listaClientes" emptyMessage="Nenhum aluno encontrado."
+                                   widgetVar="clientesTable" filteredValue="#{clienteMB.listaTemp}">
+                          <f:facet name="header">
+                              <p:outputPanel>
+                                  <h:outputText value="Procurar em todos os campos:"/>
+                                  <p:inputText id="globalFilter" onkeyup="clientesTable.filter()"/>
+                              </p:outputPanel>
+                          </f:facet>
+                          <p:column headerText="ID" style="width: 5%;" filterBy="#{cliente.id}" filterMatchMode="contains" sortBy="#{cliente.id}">#{cliente.id}</p:column>
+                          <p:column headerText="Nome" filterBy="#{cliente.nome}" filterMatchMode="contains" sortBy="#{cliente.nome}">#{cliente.nome}</p:column>
+                          <p:column headerText = "Endereço" filterBy="#{cliente.endereco.rua}" filterMatchMode="contains" sortBy="##{cliente.endereco.rua}}"> 
+                                                                       Rua #{cliente.endereco.rua}, 
+                                                                           #{cliente.endereco.numero}, 
+                                                                    Bairro #{cliente.endereco.bairro.descricao},
+                                                                           #{cliente.endereco.bairro.cidade.descricao},
+                                                                           #{cliente.endereco.bairro.cidade.estado.descricao}   
+                          </p:column>
+                      </p:dataTable>
 
-
-
-
-                     <h:form>  
-
-                            <p:dataTable id="dataTable" var="cliente" value="#{clienteMB.findAll()}" widgetVar="clienteTable"   
-                                         emptyMessage="Nao ha dados cadastrados" filteredValue="#{tableBean.filteredCars}">  
-
-                                   <f:facet name="header">  
-                                          <p:outputPanel>  
-                                                 <h:outputText value="Search all fields:" />  
-                                                 <p:inputText id="globalFilter" onkeyup="carsTable.filter()" style="width:150px" />  
-                                          </p:outputPanel>  
-                                   </f:facet>  
-
-                                   <p:column id="modelColumn" filterBy="#{car.model}"   
-                                             headerText="Model" footerText="contains"  
-                                             filterMatchMode="contains">  
-                                          <h:outputText value="#{car.model}" />  
-                                   </p:column>  
-
-                                   <p:column id="yearColumn" filterBy="#{car.year}"  
-                                             headerText="Year" footerText="startsWith">  
-                                          <h:outputText value="#{car.year}" />  
-                                   </p:column>  
-
-                                   <p:column id="manufacturerColumn" filterBy="#{car.manufacturer}"   
-                                             headerText="Manufacturer" footerText="exact"  
-                                             filterOptions="#{tableBean.manufacturerOptions}"  
-                                             filterMatchMode="exact">  
-                                          <h:outputText value="#{car.manufacturer}" />  
-                                   </p:column>  
-
-                                   <p:column id="colorColumn" filterBy="#{car.color}"  
-                                             headerText="Color" footerText="endsWith" filterMatchMode="endsWith">  
-                                          <h:outputText value="#{car.color}" />  
-                                   </p:column>  
-                            </p:dataTable>  
-
-                     </h:form> 
-
-
-
-
+                  </h:form> 
+                  
               </ui:define>
        </ui:composition>
 </html>
