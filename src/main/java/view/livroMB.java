@@ -26,7 +26,15 @@ public class livroMB {
        LivroEJB livroEJB;
 
 
-       
+       	private List<ModelLivro> listaTemp;
+
+        public List<ModelLivro> getListaTemp() {
+            return listaTemp;
+        }
+
+        public void setListaTemp(List<ModelLivro> listaTemp) {
+            this.listaTemp = listaTemp;
+        }
    
 
        public ModelLivro getLivro() {

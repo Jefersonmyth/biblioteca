@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h:form>
+                <h3>Consultar Livros</h3>
+               
+                <p:dataTable value="#{livroMB.findAll()}" var="livro" id="listaLivros" emptyMessage="Nenhum livro encontrado."
+                             widgetVar="livrosTable" filteredValue="#{livroMB.listaTemp}">
+                    <f:facet name="header">
+                        <h:outputText value="Procurar em todos os campos:"/>
+                        <p:inputText id="globalFilter" onkeyup="livrosTable.filter()"/>
+                    </f:facet>
+                    <p:column headerText="ID" style="width: 5%" filterBy="#{livro.id}" filterMatchMode="contains" sortBy="#{livro.id}">#{livro.id}</p:column>
+                    <p:column headerText="Nome" filterBy="#{livro.nome}" filterMatchMode="contains" sortBy="#{livro.nome}">#{livro.nome}</p:column>
+                    <p:column headerText="Assunto" filterBy="#{livro.assunto}" filterMatchMode="contains" sortBy="#{livro.assunto}">#{livro.assunto}</p:column>
+                    <p:column headerText="Autor" filterBy="#{livro.autor}" filterMatchMode="contains" sortBy="#{livro.autor}">#{livro.autor}</p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
