@@ -1,10 +1,4 @@
-/* 
-    Document   : css
-    Created on : 28/06/2013, 15:14:29
-    Author     : jeff
-    Description:
-        Purpose of the stylesheet follows.
-*/
+
 
 root { 
        display: block;
@@ -43,4 +37,53 @@ h3{
     font-size: 35px;
     text-shadow:  1px 1px 1px #999999;
     font-style: italic;
+}
+
+#falha{
+    width: 500px;
+    height: auto;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 15%;
+    text-align: center;
+}
+
+.linkFalha{
+    text-decoration: none;
+    color: #555555;
+    font-size: 16px;
+}
+.linkFalha:hover{
+    color: #555555;
+    text-shadow: #7096ab 2px 2px 2px;
+}
+
+.textoLogin{
+    font-size: 14px;
+}
+
+.campo_login{
+    width: 240px;
+}
+
+#corpo_login{
+    width: 800px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#botao_logar{
+    margin-top: 10px;
+    padding: 3px 5px 4px 5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#c5c5c5)); 
+    background: -moz-linear-gradient(top,  #eee,  #c5c5c5);
+    border: 1px #a8a8a8 solid;
+    border-radius: 3px;
+}
+#botao_logar:hover{
+    background: -webkit-gradient(linear, left top, left bottom, from(#c8dce7), to(#86b3cb)); 
+    background: -moz-linear-gradient(top,  #c8dce7,  #86b3cb);
+    border: 1px #7096ab solid;
+    box-shadow: #7096ab 0px 0px 7px;
 }
